@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sana Bir Mesajım Var</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; text-align: center; background: #fff5f5; transition: 0.5s; }
+        .container { margin-top: 50px; }
+        img { width: 300px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); margin-bottom: 20px; }
+        button { padding: 15px 30px; font-size: 18px; cursor: pointer; border: none; border-radius: 25px; margin: 10px; }
+        #yesBtn { background-color: #ff4d4d; color: white; }
+        #noBtn { background-color: #888; color: white; position: relative; }
+        .hidden { display: none; }
+        .hearts { font-size: 50px; color: red; animation: beat 1s infinite; }
+        @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+    </style>
+</head>
+<body>
+
+    <div id="step1" class="container">
+        <img src="FOTO_1_URL" alt="İlk Fotoğraf">
+        <h1>Seni Çok Özledim...</h1>
+        <p>Her şeyin başladığı o güzel günleri hatırlıyor musun?</p>
+        <button onclick="nextStep()">Devam Et ❤️</button>
+    </div>
+
+    <div id="step2" class="container hidden">
+        <img src="FOTO_2_URL" alt="İkinci Fotoğraf">
+        <h1>Her Şeyi Düzeltmemiz İçin Bir Şans?</h1>
+        <button id="yesBtn" onclick="celebrate()">EVET!</button>
+        <button id="noBtn" onmouseover="moveButton()">Hayır</button>
+    </div>
+
+    <div id="step3" class="container hidden">
+        <div class="hearts">❤️❤️❤️</div>
+        <img src="FOTO_3_URL" alt="Üçüncü Fotoğraf">
+        <h1>Seni Seviyorum!</h1>
+        <p>Biliyorum, her şey çok güzel olacak...</p>
+        <audio id="myAudio" loop>
+            <source src="MUZIK_URL.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        function nextStep() {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+        }
+
+        function celebrate() {
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.remove('hidden');
+            document.getElementById('myAudio').play();
+            document.body.style.backgroundColor = "#ffebeb";
+        }
+
+        function moveButton() {
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            btn.style.position = 'absolute';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+    </script>
+</body>
+</html>
